@@ -1,5 +1,8 @@
-SRC_DIR := src
+.PHONY: count
+count: build  ## report how many words were built
+	@wc -w $(OUTPUTS) | tail -n 1
 OUT_DIR := out
+SRC_DIR := src
 SOURCES := $(wildcard $(SRC_DIR)/*.txt)
 OUTPUTS := $(patsubst $(SRC_DIR)/%.txt,$(OUT_DIR)/%.txt,$(SOURCES))
 

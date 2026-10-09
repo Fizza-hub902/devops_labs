@@ -1,5 +1,8 @@
-SRC_DIR := src
+.PHONY: count
+count: build  ## report how many words were built
+	@wc -w $(OUTPUTS) | tail -n 1
 OUT_DIR := out
+SRC_DIR := src
 SOURCES := $(wildcard $(SRC_DIR)/*.txt)
 OUTPUTS := $(patsubst $(SRC_DIR)/%.txt,$(OUT_DIR)/%.txt,$(SOURCES))
 
@@ -33,3 +36,6 @@ clean:
 	rm -rf $(OUT_DIR)
 
 ci: clean check test
+# count: see section 5 of the README
+# OUTPUTS is set by the wildcard above
+# run 'make help' for all targets
